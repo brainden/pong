@@ -1,4 +1,5 @@
 import turtle
+import os
 
 wn = turtle.Screen()
 wn.title("Pong")
@@ -99,14 +100,17 @@ while True:
     if ball.ycor() > 290:
         ball.sety(290)
         ball.dy *= -1
+        os.system("afplay bounce1.mp3&")
 
     if ball.ycor() < -290:
         ball.sety(-290)
         ball.dy *= -1
+        os.system("afplay bounce2.mp3&")
 
     if ball.xcor() > 390:
         ball.goto(0, 0)
         ball.dx *= -1
+        os.system("afplay point.mp3&")
         score_a += 1
         pen.clear()
         pen.write("Player A: {}      Player B: {}".format(score_a, score_b),
@@ -115,6 +119,7 @@ while True:
     if ball.xcor() < -390:
         ball.goto(0, 0)
         ball.dx *= -1
+        os.system("afplay point.mp3&")
         score_b += 1
         pen.clear()
         pen.write("Player A: {}      Player B: {}".format(score_a, score_b),
@@ -123,10 +128,10 @@ while True:
     # Paddle and Ball Collision
     if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < paddle_b.ycor() + 40 and ball.ycor() > paddle_b.ycor() - 40):
         ball.setx(340)
+        os.system("afplay bounce2.mp3&")
         ball.dx *= -1
 
     if (ball.xcor() < -340 and ball.xcor() > -350) and (ball.ycor() < paddle_a.ycor() + 40 and ball.ycor() > paddle_a.ycor() - 40):
         ball.setx(-340)
+        os.system("afplay bounce1.mp3&")
         ball.dx *= -1
-
-    # Score
